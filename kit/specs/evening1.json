@@ -1,0 +1,17 @@
+{
+  "kind": "news",
+  "theme": "crypto",
+  "serial": "FP-0003",
+  "tags": ["CRYPTO", "03 NOV 2026"],
+  "headline": "بایننس دوباره باز شد؛ ولی کاربرها پول‌شون رو بردن",
+  "subline": "بعد از هک ۶٫۳ میلیارد دلاری، برداشت‌ها از ۱ نوامبر مرحله‌به‌مرحله باز شد.",
+  "tiles": [
+    {"icon": "shield", "label": "سرقت", "value": "6.3", "unit": "میلیارد دلار"},
+    {"icon": "out", "label": "خروج خالص، روز اول", "value": "3.6", "unit": "میلیارد دلار"},
+    {"icon": "coin", "label": "بیت‌کوین", "value": "76,500", "unit": "دلار، حدودی"}
+  ],
+  "question": "اگه مشتری بخواد با کریپتو پرداخت کنه، ریسک نگهداریش با کیه؟",
+  "tagline": "TRUST IS THE REAL ASSET",
+  "disclaimer": "اطلاع‌رسانیه، نه توصیه‌ی مالی؛ پیشنهادی برای خرید یا فروش هیچ رمزارزی نیست.",
+  "sources": "Sources: CoinDesk and CBS News, 2 Nov 2026; PC Gamer, crypto.news and Analytics Insight, 3 Nov 2026."
+}

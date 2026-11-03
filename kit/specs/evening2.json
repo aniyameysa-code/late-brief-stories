@@ -1,0 +1,37 @@
+{
+  "kind": "news",
+  "theme": "trade",
+  "serial": "FP-0004",
+  "tags": [
+    "ECONOMY & TRADE",
+    "03 NOV 2026"
+  ],
+  "headline": "تجارت غیرنفتی امارات به رکورد تازه رسید",
+  "subline": "نیمه‌ی اول ۲۰۲۶: صادرات غیرنفتی ۲۳٫۹ درصد رشد کرد.",
+  "tiles": [
+    {
+      "icon": "globe",
+      "label": "تجارت ۶ ماه اول",
+      "value": "1,937",
+      "unit": "میلیارد درهم",
+      "change": 13.1
+    },
+    {
+      "icon": "ship",
+      "label": "صادرات ۶ ماه اول",
+      "value": "452.8",
+      "unit": "میلیارد درهم",
+      "change": 23.9
+    },
+    {
+      "icon": "chart",
+      "label": "کل تجارت ۲۰۲۵",
+      "value": "3.8",
+      "unit": "تریلیون درهم"
+    }
+  ],
+  "question": "برای صادرات سال بعد، از توافق‌های CEPA استفاده می‌کنید؟",
+  "tagline": "TRADE ROUTES ARE DECISIONS",
+  "disclaimer": "اطلاع‌رسانیه، نه توصیه‌ی مالی.",
+  "sources": "Sources: Dubai Media Office and Gulf News, 19 Jul 2026; WAM and Gulf News (2025 total); Khaleej Times, 3 Nov 2026."
+}
