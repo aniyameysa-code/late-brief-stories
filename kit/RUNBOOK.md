@@ -65,3 +65,16 @@ Load the decision-room-brand and finance-pulse skills first if they are listed.
 - list_triggers: if fewer than 4 future Finance Pulse wake-ups are pending, add the next ones with
   send_later (morning 09:27 Dubai Mon to Fri, evening 17:29 Dubai every day), message:
   "Finance Pulse <morning|evening> run: follow kit/RUNBOOK.md in the late-brief-stories repo."
+
+## 8. Format v2 (from 4 Nov 2026): video stories with music
+Aniya asked for more playful, engaging stories: always with music; charts, tables and timelines;
+striking graphics; ways to think; one story seen from several angles with its effects; a personal
+voice that talks to people so they write back; psychology (curiosity hook, "which side are you?",
+a free thinking framework, an invitation to DM); new fonts and graphics.
+- Use kit/v2 (README there). One video story per slot, about 30 s, six scenes.
+- Hook: a curiosity line («برای کسب‌وکار شما یعنی چی؟ تا آخر ببینید.»). Angles: importer, exporter,
+  and one more group, mechanism only («توضیحِ سازوکاره، نه پیش‌بینی»). Think: three questions.
+  CTA: Aniya's first-person line, «شما کدوم طرفید؟» with two options, DM invitation, keyword «عضویت».
+- Same rules as above: every number with two sources, no advice, sources and disclaimer on screen.
+- Check stills at the busiest moment of each scene before the full render.
+- Metricool takes the MP4 as an Instagram STORY the same way (media = SHA raw URL of archive/<serial>.mp4).
