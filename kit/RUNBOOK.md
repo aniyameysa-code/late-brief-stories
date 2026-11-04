@@ -1,5 +1,10 @@
 # Finance Pulse runbook (for the wake-ups in Aniya's main chat)
 
+**Since 4 Nov 2026 every slot is ONE v2 video story with music (section 8 and kit/v2/README.md).**
+Morning (Mon to Fri, 10:00): the day's biggest market move; bars = daily % moves of the main assets.
+Evening (daily, 18:00): the most important economic story with a constructive angle.
+Sections 1 and 2 below still define the content and sourcing; ignore their old slide layouts.
+
 Stories for @aniyameysa (The Decision Room). Talk to her in Persian or Finglish, as she writes.
 Load the decision-room-brand and finance-pulse skills first if they are listed.
 
