@@ -1,40 +1,40 @@
 {
   "kind": "prices",
-  "serial": "FP-0002",
+  "serial": "FP-0007",
   "tags": [
     "MARKETS",
-    "03 NOV 2026"
+    "04 NOV 2026"
   ],
-  "headline": "نفت کمی برگشت؛ کریپتو هنوز قرمز",
-  "subline": "ریزش دیروز برنت: حدود ۹ دلار در هر بشکه",
+  "headline": "طلا دوباره از ۴٬۰۰۰ دلار گذشت",
+  "subline": "با افت دلار بعد از انتخابات آمریکا، طلا ۲٫۲ درصد بالا رفت",
   "tiles": [
-    {
-      "icon": "oil",
-      "label": "برنت",
-      "value": "105",
-      "unit": "دلار / بشکه، حدودی",
-      "change": null
-    },
     {
       "icon": "gold",
       "label": "طلا",
-      "value": "3,950",
-      "unit": "دلار / اونس، حدودی",
+      "value": "4,016",
+      "unit": "دلار / اونس",
+      "change": 2.2
+    },
+    {
+      "icon": "coin",
+      "label": "نقره",
+      "value": "51.67",
+      "unit": "دلار / اونس",
+      "change": 3.8
+    },
+    {
+      "icon": "cash",
+      "label": "شاخص دلار",
+      "value": "101.5",
+      "unit": "کف ۵ هفته، حدودی",
       "change": null
     },
     {
-      "icon": "coin",
-      "label": "بیت‌کوین",
-      "value": "77,200",
-      "unit": "دلار",
-      "change": -2.0
-    },
-    {
-      "icon": "coin",
-      "label": "اتریوم",
-      "value": "2,260",
-      "unit": "دلار",
-      "change": -1.5
+      "icon": "globe",
+      "label": "یورو / دلار",
+      "value": "1.122",
+      "unit": "حدودی",
+      "change": null
     }
   ],
   "board": [
@@ -42,27 +42,15 @@
       "title": "فارکس",
       "rows": [
         {
-          "name": "یورو / دلار",
-          "ticker": "EUR/USD",
-          "value": "1.1194",
-          "change": 0.1
-        },
-        {
           "name": "پوند / دلار",
           "ticker": "GBP/USD",
-          "value": "1.3412",
+          "value": "1.345",
           "change": null
         },
         {
           "name": "دلار / ین",
           "ticker": "USD/JPY",
-          "value": "157.84",
-          "change": -0.1
-        },
-        {
-          "name": "شاخص دلار",
-          "ticker": "DXY",
-          "value": "101.73",
+          "value": "158.2",
           "change": null
         }
       ]
@@ -71,21 +59,21 @@
       "title": "نفت",
       "rows": [
         {
-          "name": "نفت آمریکا",
-          "ticker": "WTI",
-          "value": "97",
+          "name": "برنت",
+          "ticker": "BRENT",
+          "value": "103",
           "change": null
         },
         {
-          "name": "برنت، پایان دیروز",
-          "ticker": "2 NOV",
-          "value": "104.8",
-          "change": -7.6
+          "name": "نفت آمریکا",
+          "ticker": "WTI",
+          "value": "96",
+          "change": null
         }
       ]
     }
   ],
   "tagline": "THE NUMBERS BEHIND TODAY'S DECISIONS",
   "disclaimer": "اطلاع‌رسانیه، نه توصیه‌ی مالی.",
-  "sources": "Sources: Trading Economics, Goodreturns (Reuters), HDFC Sky, Mitrade, TraderFactor, CoinGecko, MetaMask. Intraday, 3 Nov 2026, 01:00–06:00 GMT."
+  "sources": "Sources: Asharq Al-Awsat (06:19 GMT), Trading Economics, TraderFactor (04:49 GMT), Analytics Insight. 4 Nov 2026. Board figures approximate."
 }
