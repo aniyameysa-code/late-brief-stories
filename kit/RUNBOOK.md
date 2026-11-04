@@ -9,7 +9,11 @@ Load the decision-room-brand and finance-pulse skills first if they are listed.
   (owner aniyameysa-code, repo late-brief-stories, access push) and retry.
 - Renderer: kit/build_story.py with kit/fonts and kit/specs (examples only; their content is old).
   `cd kit && python3 build_story.py specs/<file>.json out/<serial>.png` (Playwright + Chromium are preinstalled).
-- Next serial = serial.txt + 1, written FP-0000.
+- Next serial = serial.txt + 1, written FP-0000. Read serial.txt right before rendering: other chats
+  of hers may also publish Finance Pulse pieces (4 Nov: FP-0006 came from another chat).
+- Before starting, check Metricool getScheduledPosts for today: if a story for this slot is already
+  published or scheduled (morning 09:00 to 12:00, evening 17:00 to 20:00), do not make another one;
+  tell her in one line instead.
 
 ## 1. Morning (weekdays, publish 10:00 Dubai): kind "prices", one slide
 - Global figures only: forex (EUR/USD, GBP/USD, USD/JPY, DXY ...), gold, Brent, WTI, crypto (BTC, ETH, ...).
