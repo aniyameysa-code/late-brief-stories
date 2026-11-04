@@ -222,7 +222,9 @@ def board(cols, top):
                 f'<span class="p"><b>{fa(r["value"])}</b>{chg(r.get("change"), False)}</span></div>'
             )
         html_cols.append(f'<div class="col"><h3>{c["title"]}</h3>{"".join(rows)}</div>')
-    cap = '<div class="cap">عدد کوچک کنار هر قیمت: تغییر روزانه به درصد</div>'
+    has_chg = any(r.get("change") is not None for c in cols for r in c["rows"])
+    cap_txt = "عدد کوچک کنار هر قیمت: تغییر روزانه به درصد" if has_chg else "عددهای این جدول حدودی‌اند"
+    cap = f'<div class="cap">{cap_txt}</div>'
     return f'<div class="board glass" style="top:{top}px">{"".join(html_cols)}{cap}</div>'
 
 
