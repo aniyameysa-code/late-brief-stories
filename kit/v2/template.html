@@ -201,24 +201,26 @@ BUILD={
      <span class="num cnt" style="font-size:200px;line-height:1.05;color:var(--navy)"></span>
      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
        <span style="font-family:Readex;font-weight:500;font-size:38px;color:var(--ink)">${s.unit}</span>
-       <span class="chip up chg">▲ ${FA(s.change)} درصد</span></div></div>
+       <span class="chip ${s.change<0?'dn':'up'} chg">${s.change<0?'▼':'▲'} ${s.changeText||(FA(Math.abs(s.change))+' درصد')}</span></div></div>
    <div class="sub abs q2" style="right:64px;left:64px;top:985px;font-weight:600;color:var(--navy)">${s.sub}</div>`;
  },
  bars(s,d){
   let h=`<h2 class="abs" style="right:64px;left:64px;top:30px">${s.title}</h2>`;
-  const base=740, maxv=Math.max(...s.bars.map(b=>Math.abs(b.value))), H=430, W=190, gap=110;
+  const pos=Math.max(0,...s.bars.map(b=>b.value)), neg=Math.max(0,...s.bars.map(b=>-b.value)), H=430, W=190, gap=110;
+  const sc=H/Math.max(1e-6,pos+neg), base=Math.round(300+pos*sc);
   const n=s.bars.length, total=n*W+(n-1)*gap, x0=(1080-total)/2;
   h+=`<div class="abs" style="left:64px;right:64px;top:${base}px;height:3px;background:rgba(28,36,51,.25)"></div>`;
-  s.bars.forEach((b,i)=>{const x=1080-x0-W-i*(W+gap); // RTL order
-    const hh=Math.abs(b.value)/maxv*H; const neg=b.value<0;
-    const col=neg?'linear-gradient(180deg,#9FB4CC,#7E9DC0)':(i%2?'linear-gradient(180deg,#FCD679,#F59E0B)':'linear-gradient(180deg,#F59E0B,#B45309)');
-    h+=`<div class="bar${neg?' neg':''}" data-h="${hh}" data-neg="${neg?1:0}" style="left:${x}px;width:${W}px;top:${base}px;height:0;background:${col};box-shadow:0 14px 34px rgba(180,83,9,${neg?0:.28})"></div>`;
-    h+=`<div class="bval" data-v="${b.value}" style="left:${x-35}px;top:${neg?base+hh+14:base-hh-86}px"></div>`;
-    h+=`<div class="blab" style="left:${x-35}px;top:${neg?base-62:base+22}px">${b.label}</div>`;
-    if(b.ring){h+=`<div class="ring" style="left:${x-36}px;top:${base-hh-118}px;width:${W+72}px;height:${W+72}px"></div><div class="rnum" style="left:${x+W+8}px;top:${base-hh-128}px">${FA(b.ring)}</div>`;}
+  s.bars.forEach((b,i)=>{const x=1080-x0-W-i*(W+gap);
+    const hh=Math.abs(b.value)*sc; const ng=b.value<0;
+    const col=ng?'linear-gradient(180deg,#9FB4CC,#7E9DC0)':(i%2?'linear-gradient(180deg,#FCD679,#F59E0B)':'linear-gradient(180deg,#F59E0B,#B45309)');
+    h+=`<div class="bar${ng?' neg':''}" data-h="${hh}" data-neg="${ng?1:0}" data-base="${base}" style="left:${x}px;width:${W}px;top:${base}px;height:0;background:${col};box-shadow:0 14px 34px rgba(180,83,9,${ng?0:.28})"></div>`;
+    h+=`<div class="bval" data-v="${b.value}" style="left:${x-35}px;top:${ng?base+hh+14:base-hh-86}px"></div>`;
+    h+=`<div class="blab" style="left:${x-35}px;top:${ng?base-62:base+22}px">${b.label}</div>`;
+    if(b.ring){const cy=ng?base+hh-40:base-hh-40, D=W+72; h+=`<div class="ring" style="left:${x-36}px;top:${cy-D/2}px;width:${D}px;height:${D}px"></div><div class="rnum" style="left:${x+W+8}px;top:${cy-D/2-10}px">${FA(b.ring)}</div>`;}
   });
-  h+=`<div class="sub abs" style="right:64px;left:64px;top:${base+130}px;font-size:28px;font-weight:400">${s.note}</div>`;
-  (s.callouts||[]).forEach((c,i)=>{h+=`<div class="callout glass co" style="right:64px;left:64px;top:${base+190+i*112}px"><span class="rnum" style="position:relative;display:inline-flex;vertical-align:middle;margin-left:16px">${FA(i+1)}</span>${c}</div>`});
+  const below=Math.round(Math.max(base+130, base+neg*sc+110));
+  h+=`<div class="sub abs" style="right:64px;left:64px;top:${below}px;font-size:28px;font-weight:400">${s.note}</div>`;
+  (s.callouts||[]).forEach((c,i)=>{h+=`<div class="callout glass co" style="right:64px;left:64px;top:${below+60+i*112}px"><span class="rnum" style="position:relative;display:inline-flex;vertical-align:middle;margin-left:16px">${FA(i+1)}</span>${c}</div>`});
   d.innerHTML=h;
  },
  timeline(s,d){
@@ -241,7 +243,7 @@ BUILD={
  },
  cta(s,d){
   let h=`<div class="sub abs ln1" style="right:64px;left:64px;top:30px;font-weight:600;color:var(--navy);font-size:44px">${s.line1}</div>
-   <h1 class="abs ln2" style="right:64px;left:64px;top:250px;font-size:120px">${s.ask}</h1>`;
+   <h1 class="abs ln2" style="right:64px;left:64px;top:250px;font-size:${s.asize||120}px">${s.ask}</h1>`;
   s.options.forEach((o,i)=>{h+=`<div class="pill glass op" style="top:470px;${i?'left':'right'}:64px;color:var(--navy)">${o}</div>`});
   h+=`<div class="sub abs ln3" style="right:64px;left:64px;top:640px;font-size:38px">${s.line2}</div>
       <div class="bubble bb" style="top:760px">${ICON.plane}<span style="margin-right:14px">${s.bubble}</span></div>`;
@@ -268,7 +270,7 @@ const RUN={
   const q=d.querySelector('.q2'); const k2=clamp((lt-3.0)/0.6); q.style.opacity=k2; q.style.transform=`translateY(${(1-ease(k2))*30}px)`;
  },
  bars(s,lt,d){
-  d.querySelectorAll('.bar').forEach((b,i)=>{const p=easeIO(clamp((lt-0.4-i*0.25)/0.9)); const hh=+b.dataset.h*p; const base=740;
+  d.querySelectorAll('.bar').forEach((b,i)=>{const p=easeIO(clamp((lt-0.4-i*0.25)/0.9)); const hh=+b.dataset.h*p; const base=+b.dataset.base;
     if(b.dataset.neg==='1'){b.style.top=base+'px';b.style.height=hh+'px'} else {b.style.top=(base-hh)+'px';b.style.height=hh+'px'}});
   d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=(+v.dataset.v<0?'▼ ':'▲ ')+FA(Math.abs(val).toFixed(1)); v.style.opacity=clamp(p*3)});
   d.querySelectorAll('.ring').forEach(r=>{const k=clamp((lt-1.9)/0.5); r.style.opacity=k; r.style.transform=`scale(${0.7+0.3*back(k)}) rotate(${lt*20}deg)`});
@@ -302,9 +304,9 @@ window.renderAt=function(t){
     if(!on){s.el.style.opacity=0;return} const st=sceneState(s,t); s.el.style.opacity=st.a; s.el.style.transform=`translateY(${st.y}px)`; RUN[s.type](s,st.lt,s.el);});
   dots.querySelectorAll('.d').forEach((x,i)=>x.classList.toggle('on',i<=cur));
   document.getElementById('chapT').textContent=SC[cur].chapter||'';
-  const s=SC[cur]; const cfg=(s.type==='hook')?{gx:780,gy:1100,gr:330,ga:.5,fy:1552,fa:1,ox:140}:{gx:900,gy:560,gr:300,ga:.35,fy:1552,fa:.9,ox:140};
+  const s=SC[cur]; const cfg=(s.type==='hook')?{gx:780,gy:1100,gr:330,ga:(SC[0].visual==='none'?.9:.5),fy:1552,fa:1,ox:140}:{gx:900,gy:560,gr:300,ga:.35,fy:1552,fa:.9,ox:140};
   bg(t,cfg);
-  const lt=t-SC[0].start, gv=(cur===0)?Math.min(ease((lt-0.4)/0.8),clamp((SC[0].end-t)/0.45)):0;
+  const lt=t-SC[0].start, gv=(cur===0&&SC[0].visual!=='none')?Math.min(ease((lt-0.4)/0.8),clamp((SC[0].end-t)/0.45)):0;
   gold(t,gv,1050);
 };
 window.renderAt(0);
