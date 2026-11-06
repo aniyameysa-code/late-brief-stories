@@ -47,6 +47,7 @@ h2{font-family:Lalezar;font-weight:400;font-size:80px;line-height:1.2;color:var(
 .chip{display:inline-flex;align-items:center;gap:8px;font-family:Num;font-weight:700;font-size:36px;padding:8px 22px;border-radius:30px}
 .chip.up{color:#0F7A4A;background:rgba(16,185,129,.14)}
 .chip.dn{color:#B42318;background:rgba(240,68,56,.12)}
+.chip.nt{color:#B45309;background:rgba(245,158,11,.16)}
 footer{position:absolute;left:64px;right:64px;top:1592px;z-index:6;direction:rtl}
 footer .closer{font-family:Readex;font-weight:700;font-size:30px;color:var(--navy)}
 footer .disc{font-family:Readex;font-weight:400;font-size:23px;color:var(--ink);margin-top:8px;line-height:1.5}
@@ -201,13 +202,13 @@ BUILD={
      <span class="num cnt" style="font-size:200px;line-height:1.05;color:var(--navy)"></span>
      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
        <span style="font-family:Readex;font-weight:500;font-size:38px;color:var(--ink)">${s.unit}</span>
-       <span class="chip ${s.change<0?'dn':'up'} chg">${s.change<0?'▼':'▲'} ${s.changeText||(FA(Math.abs(s.change))+' درصد')}</span></div></div>
+       <span class="chip ${s.change<0?'dn':(s.change>0?'up':'nt')} chg">${s.change<0?'▼ ':(s.change>0?'▲ ':'')}${s.changeText||(FA(Math.abs(s.change))+' درصد')}</span></div></div>
    <div class="sub abs q2" style="right:64px;left:64px;top:985px;font-weight:600;color:var(--navy)">${s.sub}</div>`;
  },
  bars(s,d){
   let h=`<h2 class="abs" style="right:64px;left:64px;top:30px">${s.title}</h2>`;
-  const pos=Math.max(0,...s.bars.map(b=>b.value)), neg=Math.max(0,...s.bars.map(b=>-b.value)), H=430, W=190, gap=110;
-  const sc=H/Math.max(1e-6,pos+neg), base=Math.round(300+pos*sc);
+  const pos=Math.max(0,...s.bars.map(b=>b.value)), neg=Math.max(0,...s.bars.map(b=>-b.value)), ringPos=s.bars.some(b=>b.ring&&b.value>0), H=ringPos?360:430, W=190, gap=110;
+  const sc=H/Math.max(1e-6,pos+neg), base=Math.round((ringPos?340:300)+pos*sc);
   const n=s.bars.length, total=n*W+(n-1)*gap, x0=(1080-total)/2;
   h+=`<div class="abs" style="left:64px;right:64px;top:${base}px;height:3px;background:rgba(28,36,51,.25)"></div>`;
   s.bars.forEach((b,i)=>{const x=1080-x0-W-i*(W+gap);
@@ -272,7 +273,7 @@ const RUN={
  bars(s,lt,d){
   d.querySelectorAll('.bar').forEach((b,i)=>{const p=easeIO(clamp((lt-0.4-i*0.25)/0.9)); const hh=+b.dataset.h*p; const base=+b.dataset.base;
     if(b.dataset.neg==='1'){b.style.top=base+'px';b.style.height=hh+'px'} else {b.style.top=(base-hh)+'px';b.style.height=hh+'px'}});
-  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=(+v.dataset.v<0?'▼ ':'▲ ')+FA(Math.abs(val).toFixed(1)); v.style.opacity=clamp(p*3)});
+  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=s.abs?FA(Math.round(Math.abs(val)).toLocaleString('en-US')):((+v.dataset.v<0?'▼ ':'▲ ')+FA(Math.abs(val).toFixed(1))); v.style.opacity=clamp(p*3)});
   d.querySelectorAll('.ring').forEach(r=>{const k=clamp((lt-1.9)/0.5); r.style.opacity=k; r.style.transform=`scale(${0.7+0.3*back(k)}) rotate(${lt*20}deg)`});
   d.querySelectorAll('.rnum').forEach(r=>{if(r.closest('.co'))return; const k=clamp((lt-2.0)/0.4); r.style.opacity=k; r.style.transform=`scale(${back(k)})`});
   d.querySelectorAll('.co').forEach((c,i)=>{const k=clamp((lt-2.3-i*0.8)/0.5); c.style.opacity=k; c.style.transform=`translateX(${(1-ease(k))*-60}px)`});
