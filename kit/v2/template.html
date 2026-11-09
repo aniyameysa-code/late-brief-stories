@@ -273,7 +273,7 @@ const RUN={
  bars(s,lt,d){
   d.querySelectorAll('.bar').forEach((b,i)=>{const p=easeIO(clamp((lt-0.4-i*0.25)/0.9)); const hh=+b.dataset.h*p; const base=+b.dataset.base;
     if(b.dataset.neg==='1'){b.style.top=base+'px';b.style.height=hh+'px'} else {b.style.top=(base-hh)+'px';b.style.height=hh+'px'}});
-  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=s.abs?FA(Math.round(Math.abs(val)).toLocaleString('en-US')):((+v.dataset.v<0?'▼ ':'▲ ')+FA(Math.abs(val).toFixed(1))); v.style.opacity=clamp(p*3)});
+  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=s.abs?FA(Math.round(Math.abs(val)).toLocaleString('en-US')):((+v.dataset.v<0?'▼ ':'▲ ')+FA(Number.isInteger(+v.dataset.v)?Math.round(Math.abs(val)):Math.abs(val).toFixed(1))); v.style.opacity=clamp(p*3)});
   d.querySelectorAll('.ring').forEach(r=>{const k=clamp((lt-1.9)/0.5); r.style.opacity=k; r.style.transform=`scale(${0.7+0.3*back(k)}) rotate(${lt*20}deg)`});
   d.querySelectorAll('.rnum').forEach(r=>{if(r.closest('.co'))return; const k=clamp((lt-2.0)/0.4); r.style.opacity=k; r.style.transform=`scale(${back(k)})`});
   d.querySelectorAll('.co').forEach((c,i)=>{const k=clamp((lt-2.3-i*0.8)/0.5); c.style.opacity=k; c.style.transform=`translateX(${(1-ease(k))*-60}px)`});
