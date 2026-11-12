@@ -188,7 +188,7 @@ const host=document.getElementById('scenes'); const R={};
 SC.forEach((s,i)=>{const d=el('div','scene'); d.id='sc'+i; host.appendChild(d); s.el=d;});
 
 function typed(str,n){return Array.from(str).slice(0,n).join('')}
-function counter(a,b,p){const v=a+(b-a)*ease(p); return Math.round(v).toLocaleString('en-US')}
+function counter(a,b,p,dec){const v=a+(b-a)*ease(p); return dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US')}
 
 function BUILDER(){}
 var BUILD;
@@ -266,7 +266,7 @@ const RUN={
   const chars=Array.from(s.headline).length, tp=clamp((lt-0.25)/s.typeDur);
   d.querySelector('.hl').textContent=typed(s.headline,Math.round(tp*chars));
   d.querySelector('.cursor').style.opacity=(tp<1||Math.floor(lt*2.4)%2===0)?1:0;
-  const cp=clamp((lt-1.0)/1.6); d.querySelector('.cnt').textContent=FA(counter(s.from,s.to,cp));
+  const cp=clamp((lt-1.0)/1.6); d.querySelector('.cnt').textContent=FA(counter(s.from,s.to,cp,s.dec));
   const c=d.querySelector('.chg'); const k=clamp((lt-2.5)/0.4); c.style.opacity=k; c.style.transform=`scale(${0.6+0.4*back(k)})`;
   const q=d.querySelector('.q2'); const k2=clamp((lt-3.0)/0.6); q.style.opacity=k2; q.style.transform=`translateY(${(1-ease(k2))*30}px)`;
  },
