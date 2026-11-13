@@ -1,5 +1,10 @@
 # Finance Pulse runbook (for the wake-ups in Aniya's main chat)
 
+**13 Nov 2026: Metricool Free plan limit reached (20 published posts a month, resets on the 1st).**
+FP-0025 failed at 10:00 with "You have reached your Metricool account limit". Until Aniya upgrades
+or until 1 Dec 2026: render and archive as usual, but do NOT schedule on Metricool. Send the MP4 with
+SendUserFile before the slot time so she can post it to her story herself, and say so in one line.
+
 **Since 4 Nov 2026 every slot is ONE v2 video story with music (section 8 and kit/v2/README.md).**
 Morning (Mon to Fri, 10:00): the day's biggest market move; bars = daily % moves of the main assets.
 Evening (daily, 18:00): the most important economic story with a constructive angle.
