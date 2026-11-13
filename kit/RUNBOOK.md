@@ -75,6 +75,9 @@ Load the decision-room-brand and finance-pulse skills first if they are listed.
 - list_triggers: if fewer than 4 future Finance Pulse wake-ups are pending, add the next ones with
   send_later (morning 09:27 Dubai Mon to Fri, evening 17:29 Dubai every day), message:
   "Finance Pulse <morning|evening> run: follow kit/RUNBOOK.md in the late-brief-stories repo."
+- Since 13 Nov (a 17:29 wake-up never arrived): every slot also gets a BACKUP wake-up 15 minutes later
+  (morning 09:42, evening 17:45) that runs the slot only if stories/<date>/<slot>.mp4 is missing from the repo.
+- Duplicate guard: before starting any run, git pull and skip the slot if stories/<date>/<slot>.mp4 already exists.
 
 ## 8. Format v2 (from 4 Nov 2026): video stories with music
 Aniya asked for more playful, engaging stories: always with music; charts, tables and timelines;
