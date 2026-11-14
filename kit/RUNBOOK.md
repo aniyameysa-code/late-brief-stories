@@ -91,3 +91,7 @@ a free thinking framework, an invitation to DM); new fonts and graphics.
 - Same rules as above: every number with two sources, no advice, sources and disclaimer on screen.
 - Check stills at the busiest moment of each scene before the full render.
 - Metricool takes the MP4 as an Instagram STORY the same way (media = SHA raw URL of archive/<serial>.mp4).
+- Two looks (Aniya's choice, 14 Nov 2026):
+  - Morning: light theme (default), tags ["MORNING MARKETS", "<DD MON YYYY>"], music 96 BPM Am-F-C-G.
+  - Evening: add "theme": "evening" to the spec (deep navy and gold, calmer 84 BPM Dm-Bb-F-C music),
+    tags ["EVENING BRIEF", "<DD MON YYYY>"].

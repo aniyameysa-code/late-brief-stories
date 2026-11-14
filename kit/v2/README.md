@@ -16,3 +16,10 @@
   - cta: personal line, a question with 2 options, DM line, bubble with the keyword «عضویت».
 - The gold-bar illustration shows only in the hook; other topics get the globe and light line.
 - Check stills before the full render (2 to 3 minutes).
+
+
+## Themes (14 Nov 2026)
+- `"theme": "evening"` at the top level of a spec switches to the dark navy and gold look (CSS class `eve`)
+  and tells music.py to use the calmer evening bed (84 BPM, Dm-Bb-F-C). Leave it out for the light morning look.
+- Tags: morning `["MORNING MARKETS", date]`, evening `["EVENING BRIEF", date]`.
+- `"dec": 1` on the hook shows a decimal counter (for example ۰٫۷).
