@@ -19,7 +19,7 @@
 
 
 ## Themes (14 Nov 2026)
-- `"theme": "evening"` at the top level of a spec switches to the dark navy and gold look (CSS class `eve`)
+- `"theme": "evening"` at the top level of a spec switches to the white background, navy text look (CSS class `eve`)
   and tells music.py to use the calmer evening bed (84 BPM, Dm-Bb-F-C). Leave it out for the light morning look.
 - Tags: morning `["MORNING MARKETS", date]`, evening `["EVENING BRIEF", date]`.
 - `"dec": 1` on the hook shows a decimal counter (for example ۰٫۷).

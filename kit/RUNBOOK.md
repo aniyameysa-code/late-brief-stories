@@ -92,6 +92,7 @@ a free thinking framework, an invitation to DM); new fonts and graphics.
 - Check stills at the busiest moment of each scene before the full render.
 - Metricool takes the MP4 as an Instagram STORY the same way (media = SHA raw URL of archive/<serial>.mp4).
 - Two looks (Aniya's choice, 14 Nov 2026):
-  - Morning: light theme (default), tags ["MORNING MARKETS", "<DD MON YYYY>"], music 96 BPM Am-F-C-G.
-  - Evening: add "theme": "evening" to the spec (deep navy and gold, calmer 84 BPM Dm-Bb-F-C music),
+  - Morning: light blue theme (default), tags ["MORNING MARKETS", "<DD MON YYYY>"], music 96 BPM Am-F-C-G.
+  - Evening: add "theme": "evening" to the spec (white background, navy text, amber accents; calmer 84 BPM Dm-Bb-F-C music;
+    changed from dark navy to white on 14 Nov at Aniya's request),
     tags ["EVENING BRIEF", "<DD MON YYYY>"].
