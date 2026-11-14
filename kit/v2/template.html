@@ -58,7 +58,7 @@ footer .src .sig{font-family:Unb;font-weight:700;font-size:16px;letter-spacing:.
 /* bars */
 .bar{position:absolute;width:190px;border-radius:22px 22px 8px 8px}
 .bar.neg{border-radius:8px 8px 22px 22px}
-.blab{position:absolute;width:260px;text-align:center;font-family:Readex;font-weight:600;font-size:34px;color:var(--navy)}
+.blab{position:absolute;width:300px;text-align:center;font-family:Readex;font-weight:600;font-size:34px;color:var(--navy)}
 .bval{position:absolute;width:260px;text-align:center;font-family:Num;font-weight:900;font-size:58px;color:var(--navy)}
 .callout{position:absolute;padding:24px 30px;font-family:Readex;font-weight:600;font-size:34px;line-height:1.5;color:var(--navy)}
 .ring{position:absolute;border-radius:50%;border:3px dashed rgba(245,158,11,.95)}
@@ -79,6 +79,7 @@ footer .src .sig{font-family:Unb;font-weight:700;font-size:16px;letter-spacing:.
 .pill{position:absolute;padding:24px 50px;border-radius:60px;font-family:Lalezar;font-size:54px}
 .bubble{position:absolute;left:64px;right:64px;padding:34px 40px;border-radius:40px 40px 10px 40px;font-family:Readex;font-weight:600;font-size:38px;line-height:1.55;color:#fff;background:linear-gradient(120deg,#1C2433,#33425E);box-shadow:0 20px 50px rgba(28,36,51,.35);direction:rtl}
 .bubble b{color:#FFC861}
+.nn{font-family:Num;font-weight:700}
 </style>
 </head>
 <body>
@@ -91,6 +92,9 @@ footer .src .sig{font-family:Unb;font-weight:700;font-size:16px;letter-spacing:.
     <linearGradient id="gfront" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2B437"/><stop offset="1" stop-color="#B9790F"/></linearGradient>
     <linearGradient id="gside" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C98A17"/><stop offset="1" stop-color="#8F5A06"/></linearGradient>
     <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <radialGradient id="cu" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#FFD9B0"/><stop offset=".45" stop-color="#E08A4A"/><stop offset="1" stop-color="#8E4517"/></radialGradient>
+    <linearGradient id="scanG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F59E0B" stop-opacity="0"/><stop offset=".5" stop-color="#FFF4D6" stop-opacity="1"/><stop offset="1" stop-color="#F59E0B" stop-opacity="0"/></linearGradient>
+    <clipPath id="coinclip"><circle cx="0" cy="0" r="128"/></clipPath>
     <clipPath id="barsclip"><path id="barsclipPath" d=""/></clipPath>
   </defs>
   <g id="globe"></g>
@@ -98,6 +102,7 @@ footer .src .sig{font-family:Unb;font-weight:700;font-size:16px;letter-spacing:.
   <g id="flow"></g>
   <g id="orbG"><circle id="orbHalo" r="80" fill="#F59E0B" opacity=".18" filter="url(#glow)"/><circle id="orbC" r="62" fill="url(#orb)" stroke="#fff" stroke-width="2"/><circle id="orbCore" r="17" fill="url(#core)"/><ellipse id="orbHi" rx="20" ry="11" fill="#fff" opacity=".8"/></g>
   <g id="goldG"></g>
+  <g id="aiG" opacity="0" direction="ltr" style="direction:ltr;unicode-bidi:isolate"></g>
   <g id="sparks"></g>
 </svg>
 
@@ -216,7 +221,7 @@ BUILD={
     const col=ng?'linear-gradient(180deg,#9FB4CC,#7E9DC0)':(i%2?'linear-gradient(180deg,#FCD679,#F59E0B)':'linear-gradient(180deg,#F59E0B,#B45309)');
     h+=`<div class="bar${ng?' neg':''}" data-h="${hh}" data-neg="${ng?1:0}" data-base="${base}" style="left:${x}px;width:${W}px;top:${base}px;height:0;background:${col};box-shadow:0 14px 34px rgba(180,83,9,${ng?0:.28})"></div>`;
     h+=`<div class="bval" data-v="${b.value}" style="left:${x-35}px;top:${ng?base+hh+14:base-hh-86}px"></div>`;
-    h+=`<div class="blab" style="left:${x-35}px;top:${ng?base-62:base+22}px">${b.label}</div>`;
+    h+=`<div class="blab" style="left:${x-55}px;top:${ng?base-62:base+22}px">${b.label}</div>`;
     if(b.ring){const cy=ng?base+hh-40:base-hh-40, D=W+72; h+=`<div class="ring" style="left:${x-36}px;top:${cy-D/2}px;width:${D}px;height:${D}px"></div><div class="rnum" style="left:${x+W+8}px;top:${cy-D/2-10}px">${FA(b.ring)}</div>`;}
   });
   const below=Math.round(Math.max(base+130, base+neg*sc+110));
@@ -255,9 +260,63 @@ const ICON={
  import:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 18l16-8 16 8v18l-16 8-16-8z"/><path d="M8 18l16 8 16-8M24 26v18"/><path d="M24 4v12M19 11l5 5 5-5" stroke="#F59E0B"/></svg>`,
  ship:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30h36l-5 9H11z"/><path d="M12 30V20h24v10M24 20v-9"/><path d="M30 8h10M36 4l4 4-4 4" stroke="#F59E0B"/></svg>`,
  gold:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6" stroke-linejoin="round"><path d="M6 36h36l-5-12H11zM14 24h20l-4-9H18z"/><path d="M38 8l1.5 3.5L43 13l-3.5 1.5L38 18l-1.5-3.5L33 13l3.5-1.5z" stroke="#F59E0B"/></svg>`,
+ user:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="15" r="7"/><path d="M6 40c1-8 7-13 14-13s13 5 14 13"/><path d="M34 22h10M39 17v10" stroke="#F59E0B"/></svg>`,
+ loop:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38 18A15 15 0 0 0 10 16M10 30a15 15 0 0 0 28 2"/><path d="M10 8v8h8M38 40v-8h-8" stroke="#F59E0B"/></svg>`,
+ coin:`<svg width="70" height="70" viewBox="0 0 48 48" fill="none" stroke="#1C2433" stroke-width="2.6"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="12" stroke="#F59E0B"/></svg>`,
  plane:`<svg width="46" height="46" viewBox="0 0 48 48" style="vertical-align:middle;transform:scaleX(-1)" fill="none" stroke="#FFC861" stroke-width="3" stroke-linejoin="round"><path d="M4 22L44 6 34 42 22 28z"/><path d="M22 28l22-22"/></svg>`
 };
 SC.forEach((s,i)=>{BUILD[s.type](s,s.el)});
+// numbers with «٫» or «٬» go to Vazirmatn (Lalezar and Readex draw «٫» like a comma)
+(function(){const w=document.createTreeWalker(document.getElementById('scenes'),NodeFilter.SHOW_TEXT);const ns=[];while(w.nextNode())ns.push(w.currentNode);
+ ns.forEach(n=>{if(!/[۰-۹][٫٬]/.test(n.nodeValue)||n.parentElement.closest('.num,.bval,.chip,.rnum'))return;
+  const f=document.createDocumentFragment();n.nodeValue.split(/([۰-۹]+(?:[٫٬][۰-۹]+)+)/).forEach((part,i)=>{if(i%2){const sp=el('span','nn',part);f.appendChild(sp)}else if(part)f.appendChild(document.createTextNode(part))});n.replaceWith(f);});})();
+
+// ---------- AI hologram penny ----------
+const aiG=document.getElementById('aiG'); const AI={cx:540,cy:1090};
+const aiRings=sv('g',{fill:'none'}); aiRings.append(sv('circle',{r:178,stroke:'#7E9DC0','stroke-width':2.5,'stroke-dasharray':'3 9'}),sv('circle',{r:200,stroke:'#F59E0B','stroke-width':2,'stroke-dasharray':'60 22 6 22','stroke-opacity':.85}));
+const aiRings2=sv('g',{fill:'none'}); aiRings2.append(sv('circle',{r:158,stroke:'#7E9DC0','stroke-width':1.5,'stroke-opacity':.7}));
+// circuit traces to HUD labels
+const traces=[[[-170,-60],[-215,-60],[-215,-100],[-250,-100]],[[-170,60],[-215,60],[-215,85],[-250,85]],[[170,-60],[215,-60],[215,-100],[250,-100]],[[170,60],[215,60],[215,85],[250,85]],[[-60,-170],[-60,-205]],[[60,170],[60,205]]];
+const trG=sv('g',{fill:'none',stroke:'#7E9DC0','stroke-width':3,'stroke-linejoin':'round'}); const trP=[]; const pulses=[];
+traces.forEach(tr=>{const p=sv('path',{d:'M'+tr.map(q=>q.join(' ')).join(' L')}); trG.appendChild(p); trP.push(p);
+  const e=tr[tr.length-1]; trG.appendChild(sv('circle',{cx:e[0],cy:e[1],r:7,fill:'#fff',stroke:'#F59E0B','stroke-width':3}));
+  const pu=sv('circle',{r:6,fill:'#FFE7B0',stroke:'#F59E0B','stroke-width':2}); pulses.push(pu);});
+const puG=sv('g',{}); pulses.forEach(p=>puG.appendChild(p));
+// coin (spins around its vertical axis)
+const coinWrap=sv('g',{}); const coinEdge=sv('g',{}); for(let k=0;k<9;k++)coinEdge.appendChild(sv('circle',{r:130,fill:'#7A3A12'}));
+const face=sv('g',{});
+face.append(sv('circle',{r:130,fill:'url(#cu)',stroke:'#FFE2C2','stroke-width':3}), sv('circle',{r:112,fill:'none',stroke:'#FFE2C2','stroke-opacity':.75,'stroke-width':2,'stroke-dasharray':'2 6'}));
+const big=sv('text',{x:0,y:30,'text-anchor':'middle','font-family':'Unb','font-weight':800,'font-size':96,fill:'#7A3A12'}); big.textContent='1¢';
+const bigHi=sv('text',{x:-2,y:27,'text-anchor':'middle','font-family':'Unb','font-weight':800,'font-size':96,fill:'#FFE9D2','fill-opacity':.55}); bigHi.textContent='1¢';
+const cTop=sv('text',{x:0,y:-66,'text-anchor':'middle','font-family':'Unb','font-weight':700,'font-size':19,'letter-spacing':5,fill:'#6B300C'}); cTop.textContent='ONE CENT';
+const cBot=sv('text',{x:0,y:82,'text-anchor':'middle','font-family':'Unb','font-weight':700,'font-size':18,'letter-spacing':4,fill:'#6B300C'}); cBot.textContent='1793 — 2025';
+face.append(bigHi,big,cTop,cBot);
+const glint=sv('rect',{x:-200,y:-140,width:60,height:280,fill:'url(#shine)',opacity:.8}); const gl=sv('g',{'clip-path':'url(#coinclip)'}); gl.appendChild(glint); face.appendChild(gl);
+coinWrap.append(coinEdge,face);
+// hologram scan beam + HUD brackets
+const scan=sv('g',{}); scan.append(sv('rect',{x:-190,y:-9,width:380,height:18,fill:'#F59E0B',opacity:.25,filter:'url(#glow)'}),sv('rect',{x:-190,y:-2,width:380,height:4,fill:'url(#scanG)'}));
+const brk=sv('g',{fill:'none',stroke:'#1C2433','stroke-width':4,'stroke-linecap':'round'});
+[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>brk.appendChild(sv('path',{d:`M${a*150} ${b*190} H${a*190} V${b*150}`})));
+// HUD labels
+const LBL=[{x:-370,y:-100,k:'AI SCAN · COST',v:'3.69¢',c:'#B45309'},{x:-370,y:85,k:'FACE VALUE',v:'1.00¢',c:'#1C2433'},{x:370,y:-100,k:'LOSS / COIN',v:'−2.69¢',c:'#B42318'},{x:370,y:85,k:'STATUS',v:'RETIRED',c:'#1C2433'}];
+const lblG=[]; LBL.forEach(L=>{const g=sv('g',{}); g.append(sv('rect',{x:-118,y:-50,width:236,height:100,rx:20,fill:'#fff','fill-opacity':.78,stroke:'#fff','stroke-width':2}),
+  sv('rect',{x:-118,y:-50,width:6,height:100,rx:3,fill:L.c}));
+  const k=sv('text',{x:0,y:-14,'text-anchor':'middle','font-family':'Unb','font-weight':500,'font-size':15,'letter-spacing':2.5,fill:'#4B5B75'}); k.textContent=L.k;
+  const v=sv('text',{x:0,y:30,'text-anchor':'middle','font-family':'Unb','font-weight':800,'font-size':L.v.length>6?28:36,fill:L.c}); v.textContent=L.v; g.append(k,v); lblG.push([g,L]);});
+aiG.append(aiRings,aiRings2,trG,puG,coinWrap,scan,brk); lblG.forEach(([g])=>aiG.appendChild(g));
+function penny(t,vis,lt){
+  aiG.setAttribute('opacity',vis); const fy=Math.sin(t*1.4)*6;
+  aiG.setAttribute('transform',`translate(${AI.cx},${AI.cy+fy})`);
+  aiRings.setAttribute('transform',`rotate(${t*14})`); aiRings2.setAttribute('transform',`rotate(${-t*20})`);
+  const a=t*2.1, sx=Math.cos(a), sn=Math.sin(a);
+  const ax=Math.max(.06,Math.abs(sx)); coinWrap.setAttribute('transform',`scale(${ax.toFixed(3)},1)`);
+  Array.from(coinEdge.children).forEach((c,k)=>c.setAttribute('cx',(-Math.sign(sx*sn||1)*k*1.9/ax).toFixed(2)));
+  glint.setAttribute('x',-260+((t*.8)%1.4)*380);
+  scan.setAttribute('transform',`translate(0,${(Math.sin(t*1.7)*150).toFixed(1)})`);
+  trP.forEach((p,i)=>{const L=p.getTotalLength(), ph=((t*.7+i*.37)%1); const q=p.getPointAtLength(L*ph); pulses[i].setAttribute('cx',q.x); pulses[i].setAttribute('cy',q.y)});
+  const draw=clamp((lt-0.6)/1.2); trG.setAttribute('opacity',draw); puG.setAttribute('opacity',draw);
+  lblG.forEach(([g,L],i)=>{const k=clamp((lt-(S.scenes[0].lstart||3.8)-i*0.3)/0.4); g.setAttribute('opacity',k); g.setAttribute('transform',`translate(${L.x},${L.y}) scale(${(0.7+0.3*back(k)).toFixed(3)})`)});
+}
 
 // ---------- per-frame ----------
 function sceneState(s,t){const lt=t-s.start, inP=ease(lt/0.6), outP=clamp((s.end-t)/0.45); return {lt, a:Math.min(inP,outP), y:(1-inP)*40-(1-outP)*30};}
@@ -266,6 +325,7 @@ const RUN={
   const chars=Array.from(s.headline).length, tp=clamp((lt-0.25)/s.typeDur);
   d.querySelector('.hl').textContent=typed(s.headline,Math.round(tp*chars));
   d.querySelector('.cursor').style.opacity=(tp<1||Math.floor(lt*2.4)%2===0)?1:0;
+  const off=(s.cstart||1.0)-1.0; lt=lt-off;
   const cp=clamp((lt-1.0)/1.6); d.querySelector('.cnt').textContent=FA(counter(s.from,s.to,cp,s.dec));
   const c=d.querySelector('.chg'); const k=clamp((lt-2.5)/0.4); c.style.opacity=k; c.style.transform=`scale(${0.6+0.4*back(k)})`;
   const q=d.querySelector('.q2'); const k2=clamp((lt-3.0)/0.6); q.style.opacity=k2; q.style.transform=`translateY(${(1-ease(k2))*30}px)`;
@@ -273,7 +333,7 @@ const RUN={
  bars(s,lt,d){
   d.querySelectorAll('.bar').forEach((b,i)=>{const p=easeIO(clamp((lt-0.4-i*0.25)/0.9)); const hh=+b.dataset.h*p; const base=+b.dataset.base;
     if(b.dataset.neg==='1'){b.style.top=base+'px';b.style.height=hh+'px'} else {b.style.top=(base-hh)+'px';b.style.height=hh+'px'}});
-  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=s.abs?FA(Math.round(Math.abs(val)).toLocaleString('en-US')):((+v.dataset.v<0?'▼ ':'▲ ')+FA(Number.isInteger(+v.dataset.v)?Math.round(Math.abs(val)):Math.abs(val).toFixed(1))); v.style.opacity=clamp(p*3)});
+  d.querySelectorAll('.bval').forEach((v,i)=>{const p=clamp((lt-0.4-i*0.25)/0.9); const val=+v.dataset.v*ease(p); v.textContent=s.dec?FA(Math.abs(val).toFixed(s.dec)):s.abs?FA(Math.round(Math.abs(val)).toLocaleString('en-US')):((+v.dataset.v<0?'▼ ':'▲ ')+FA(Number.isInteger(+v.dataset.v)?Math.round(Math.abs(val)):Math.abs(val).toFixed(1))); v.style.opacity=clamp(p*3)});
   d.querySelectorAll('.ring').forEach(r=>{const k=clamp((lt-1.9)/0.5); r.style.opacity=k; r.style.transform=`scale(${0.7+0.3*back(k)}) rotate(${lt*20}deg)`});
   d.querySelectorAll('.rnum').forEach(r=>{if(r.closest('.co'))return; const k=clamp((lt-2.0)/0.4); r.style.opacity=k; r.style.transform=`scale(${back(k)})`});
   d.querySelectorAll('.co').forEach((c,i)=>{const k=clamp((lt-2.3-i*0.8)/0.5); c.style.opacity=k; c.style.transform=`translateX(${(1-ease(k))*-60}px)`});
@@ -305,10 +365,10 @@ window.renderAt=function(t){
     if(!on){s.el.style.opacity=0;return} const st=sceneState(s,t); s.el.style.opacity=st.a; s.el.style.transform=`translateY(${st.y}px)`; RUN[s.type](s,st.lt,s.el);});
   dots.querySelectorAll('.d').forEach((x,i)=>x.classList.toggle('on',i<=cur));
   document.getElementById('chapT').textContent=SC[cur].chapter||'';
-  const s=SC[cur]; const cfg=(s.type==='hook')?{gx:780,gy:1100,gr:330,ga:(SC[0].visual==='none'?.9:.5),fy:1552,fa:1,ox:140}:{gx:900,gy:560,gr:300,ga:.35,fy:1552,fa:.9,ox:140};
+  const s=SC[cur]; const cfg=(s.type==='hook')?{gx:780,gy:1100,gr:330,ga:(SC[0].visual==='none'?.9:(SC[0].visual==='penny'?.2:.5)),fy:1552,fa:1,ox:140}:{gx:900,gy:560,gr:300,ga:.35,fy:1552,fa:.9,ox:140};
   bg(t,cfg);
   const lt=t-SC[0].start, gv=(cur===0&&SC[0].visual!=='none')?Math.min(ease((lt-0.4)/0.8),clamp((SC[0].end-t)/0.45)):0;
-  gold(t,gv,1050);
+  if(SC[0].visual==='penny'){gold(t,0,1050);penny(t,gv,lt)}else gold(t,gv,1050);
 };
 window.renderAt(0);
 </script>
