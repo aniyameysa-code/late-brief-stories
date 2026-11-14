@@ -88,7 +88,7 @@ def main():
         nch = len(hook["headline"])
         clicks = [0.25 + hook.get("typeDur", 1.6) * (k + 1) / nch for k in range(nch) if hook["headline"][k] != " "]
     cues = {"total": t0, "clicks": clicks, "whoosh": [b for _, b in times[:-1]],
-            "pops": [times[0][0] + 2.5 + (hook.get("cstart", 1.0) - 1.0)]}
+            "pops": [times[0][0] + 2.5 + (hook.get("cstart", 1.0) - 1.0)], "mood": spec.get("theme", "morning")}
     wav = work / "music.wav"
     subprocess.run([sys.executable, str(HERE / "music.py"), json.dumps(cues), str(wav)], check=True)
     tmp = out.with_name(out.stem + ".part.mp4")

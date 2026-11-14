@@ -15,7 +15,8 @@ T = cues["total"] + 0.4
 n = int(T * SR)
 rng = np.random.default_rng(cues.get("seed", 7))
 L = np.zeros(n); Rch = np.zeros(n)
-BPM = 96; BEAT = 60 / BPM
+MOOD = cues.get("mood", "morning")
+BPM = 84 if MOOD == "evening" else 96; BEAT = 60 / BPM
 
 CH = [  # (bass, pad notes)
     (110.00, [220.00, 261.63, 329.63]),   # Am
@@ -23,6 +24,13 @@ CH = [  # (bass, pad notes)
     (130.81, [261.63, 329.63, 392.00]),   # C
     (98.00, [196.00, 246.94, 293.66]),    # G
 ]
+if MOOD == "evening":  # warmer, slower: Dm-Bb-F-C
+    CH = [
+        (73.42, [146.83, 174.61, 220.00]),    # Dm
+        (116.54, [233.08, 293.66, 349.23]),   # Bb
+        (87.31, [174.61, 220.00, 261.63]),    # F
+        (130.81, [261.63, 329.63, 392.00]),   # C
+    ]
 CHORD_LEN = 8 * BEAT
 
 
