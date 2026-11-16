@@ -90,14 +90,17 @@ def bgfx(theme, i):
 <circle cx="1120" cy="250" r="190"/><circle cx="1120" cy="250" r="260"/></g>
 </svg>"""
 
-def page(serial, tag, n, total, s, i):
+def page(serial, tag, n, total, s, i, sig=True, pages=True):
     th = s["theme"]
+    pg_tag = f'<span class="tag p">{n:02d}/{total:02d}</span>' if pages else ""
+    pg_ft = f" · {n:02d}/{total:02d}" if pages else ""
+    sig_html = '<div class="sig">ANIYA × CLAUDE</div>' if sig else ""
     return f"""<section class="slide {th}" id="s{n:02d}">{bgfx(th, i)}
 <div class="safe">
 <header><div><div class="l1">THE DECISION ROOM</div><div class="l2"><span style="display:inline-block;width:34px;height:2px;background:currentColor"></span>FINANCE PULSE <svg width="26" height="14" viewBox="0 0 26 14"><path d="M0 8h8l3-6 4 10 3-6h8" fill="none" stroke="currentColor" stroke-width="2"/></svg></div></div>
-<div class="tags"><span class="tag k">{tag}</span><span class="tag p">{n:02d}/{total:02d}</span></div></header>
+<div class="tags"><span class="tag k">{tag}</span>{pg_tag}</div></header>
 {s['body'].replace('{PULSE}', PULSE.replace('{i}', str(i)))}
-<footer><div class="r"><b>{serial} · {n:02d}/{total:02d}</b> · {s['src']}</div><div class="sig">ANIYA × CLAUDE</div></footer>
+<footer><div class="r"><b>{serial}{pg_ft}</b> · {s['src']}</div>{sig_html}</footer>
 </div></section>"""
 
 def main(mod_path, out_dir):
@@ -105,7 +108,7 @@ def main(mod_path, out_dir):
     deck = importlib.util.module_from_spec(spec); spec.loader.exec_module(deck)
     total = len(deck.SLIDES)
     html = "<!doctype html><html lang='fa'><head><meta charset='utf-8'><style>" + CSS.replace("url(F/", f"url({FONTS}/") + getattr(deck, "EXTRA_CSS", "") + "</style></head><body>"
-    html += "".join(page(deck.SERIAL, deck.TAG, n + 1, total, s, n) for n, s in enumerate(deck.SLIDES))
+    html += "".join(page(deck.SERIAL, deck.TAG, n + 1, total, s, n, getattr(deck, "SHOW_SIG", True), getattr(deck, "SHOW_PAGES", True)) for n, s in enumerate(deck.SLIDES))
     html += "</body></html>"
     out = pathlib.Path(out_dir).resolve(); out.mkdir(parents=True, exist_ok=True)
     hp = out / "deck.html"; hp.write_text(html, encoding="utf-8")

@@ -2,6 +2,8 @@
 # "|" in Persian text = ZWNJ (replaced at build time).
 SERIAL = "FP-0032"
 TAG = "GOLD DESK"
+SHOW_SIG = False    # Aniya, 16 Nov: no ANIYA x CLAUDE signature
+SHOW_PAGES = False  # Aniya, 16 Nov: no page numbers
 
 EXTRA_CSS = """
 .hud{font-family:Unb;font-weight:500;font-size:13px;letter-spacing:.18em;fill:#9FB4D0}
