@@ -90,7 +90,7 @@ def bgfx(theme, i):
 <circle cx="1120" cy="250" r="190"/><circle cx="1120" cy="250" r="260"/></g>
 </svg>"""
 
-def page(serial, tag, n, total, s, i, sig=True, pages=True):
+def page(serial, tag, n, total, s, i, sig=False, pages=True):
     th = s["theme"]
     pg_tag = f'<span class="tag p">{n:02d}/{total:02d}</span>' if pages else ""
     pg_ft = f" · {n:02d}/{total:02d}" if pages else ""
@@ -108,7 +108,7 @@ def main(mod_path, out_dir):
     deck = importlib.util.module_from_spec(spec); spec.loader.exec_module(deck)
     total = len(deck.SLIDES)
     html = "<!doctype html><html lang='fa'><head><meta charset='utf-8'><style>" + CSS.replace("url(F/", f"url({FONTS}/") + getattr(deck, "EXTRA_CSS", "") + "</style></head><body>"
-    html += "".join(page(deck.SERIAL, deck.TAG, n + 1, total, s, n, getattr(deck, "SHOW_SIG", True), getattr(deck, "SHOW_PAGES", True)) for n, s in enumerate(deck.SLIDES))
+    html += "".join(page(deck.SERIAL, deck.TAG, n + 1, total, s, n, getattr(deck, "SHOW_SIG", False), getattr(deck, "SHOW_PAGES", True)) for n, s in enumerate(deck.SLIDES))
     html += "</body></html>"
     out = pathlib.Path(out_dir).resolve(); out.mkdir(parents=True, exist_ok=True)
     hp = out / "deck.html"; hp.write_text(html, encoding="utf-8")

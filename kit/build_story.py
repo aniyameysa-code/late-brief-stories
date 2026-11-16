@@ -234,7 +234,7 @@ def foot(spec):
     lead = f"<b>{esc(serial)}</b> · " if serial else ""
     return (f'<div class="foot"><div class="closer">{closer}</div>'
             f'<div class="disc">{spec.get("disclaimer","اطلاع‌رسانیه، نه توصیه‌ی مالی.")}</div>'
-            f'<div class="src"><div class="r">{lead}{esc(spec["sources"])}</div><div class="sig">ANIYA × CLAUDE</div></div></div>')
+            f'<div class="src"><div class="r">{lead}{esc(spec["sources"])}</div></div></div>')
 
 
 def build_html(spec):
